@@ -40,4 +40,22 @@ public class Bank {
         return bankaccounts;
     }
 
+    public void depositMoney(int cashToDeposit, long accountNumber){
+        BankAccount account = searchAccount(accountNumber);
+        double currBalance = account.getAcc_balance();
+        currBalance = cashToDeposit+currBalance;
+        account.setAcc_balance(currBalance);
+    }
+
+    public void withdrawMoney(int cashToWithdraw, long accountNumber){
+        BankAccount account = searchAccount(accountNumber);
+        double currBalance = account.getAcc_balance();
+        if(currBalance > 1000){
+            currBalance = currBalance - cashToWithdraw;
+            account.setAcc_balance(currBalance);
+        }else{
+            System.out.println("INSUFFICIENT BALANCE \n unable to process");
+        }
+    }
+    
 }
